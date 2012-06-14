@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.geolocalization.geoLocalizationManagerBean">
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="org.nuxeo.geolocalization.geolocalizationManagerBean" link="/incl/tabs/org.nuxeo.geolocalization.geolocalizationManagerBean-tab.xhtml"
+      label="label.org.nuxeo.geolocalization.geolocalizationManagerBean"
+      icon="/icons/org.nuxeo.geolocalization.geolocalizationManagerBean-tab.gif" order="200">
+      <category>VIEW_ACTION_LIST</category>
+    </action>
+  </extension>
+
+</component>

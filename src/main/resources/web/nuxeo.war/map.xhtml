@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:nxthemes="http://nuxeo.org/nxthemes"
+  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+  xmlns:nxd="http://nuxeo.org/nxweb/document"
+  xmlns:nxl="http://nuxeo.org/nxforms/layout"
+  xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+  <ui:define name="page title">
+  <h:outputText value="#{nuxeoApplicationName} - #{messages['command.map']}"/>
+  </ui:define>
+
+  <ui:define name="bookmark">
+    <link rel="bookmark" href="#{navigationContext.currentDocumentFullUrl}"/>
+  </ui:define>
+
+  <ui:define name="body">
+  <h:form id="geoLocalizationForm">
+
+  <a4j:jsFunction name="addMarkers" action="#{geoLocalizationManager.loadAllMarker}"
+   data="#{geoLocalizationManager.allMarker}" oncomplete="loadWorkerCallback(data)"  immediate="true"></a4j:jsFunction>
+   <a4j:status>
+      <f:facet name="start">
+        <h:graphicImage value="/img/standart_waiter.gif" />
+      </f:facet>
+   </a4j:status>
+<div style="width:100%; height:400px" class="smallmap" id="map"></div>
+
+  <script type="text/javascript">
+        var map, layer, currentPopup;
+
+        AutoSizeAnchoredMaxSize = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+            'autoSize': true, 
+            'maxSize': new OpenLayers.Size(100,100)
+        });
+
+        map = new OpenLayers.Map('map');
+        layer = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
+            "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'} );
+        map.addControl(new OpenLayers.Control.MousePosition());
+            
+        map.addLayer(layer);
+        map.setCenter(new OpenLayers.LonLat(0, 0), 0);
+
+        var markers = new OpenLayers.Layer.Markers( "Markers" );
+        map.addLayer(markers);
+
+        map.addControl(new OpenLayers.Control.LayerSwitcher());
+        map.zoomToMaxExtent();
+
+      
+        function loadWorkerCallback(data) {
+                var jsonData = JSON.parse(data);
+        	for (var i =0;i&lt;jsonData.length;i++) {
+        		ll = new OpenLayers.LonLat(jsonData[i].lon,jsonData[i].lat);
+                popupClass = AutoSizeAnchoredMaxSize;
+                popupContentHTML = '<a href="'+jsonData[i].link+'">'+jsonData[i].title+'</a>';
+                addMarker(ll, popupClass, popupContentHTML, true, true);
+        	}
+        };
+  
+        function addMarker(ll, popupClass, popupContentHTML, closeBox, overflow) {
+
+            var feature = new OpenLayers.Feature(markers, ll); 
+            feature.closeBox = closeBox;
+            feature.popupClass = popupClass;
+            feature.data.popupContentHTML = popupContentHTML;
+            feature.data.overflow = (overflow) ? 'auto' : 'hidden';
+                    
+            var marker = feature.createMarker();
+
+            var markerClick = function (evt) {
+                if (this.popup == null) {
+                    this.popup = this.createPopup(this.closeBox);
+                    map.addPopup(this.popup);
+                    this.popup.show();
+                } else {
+                    this.popup.toggle();
+                }
+                currentPopup = this.popup;
+                OpenLayers.Event.stop(evt);
+            };
+            marker.events.register('mousedown', feature, markerClick);
+
+            markers.addMarker(marker);
+        };
+        jQuery(document).ready(addMarkers);
+    </script>
+  </h:form>
+</ui:define>
+
+</nxthemes:composition>

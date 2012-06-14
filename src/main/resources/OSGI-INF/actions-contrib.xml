@@ -1,0 +1,12 @@
+<component name="org.nuxeo.geolocalization.actions">
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="document_map" link="#{geoLocalizationManager.goToMap()}"
+      label="command.map" order="10">
+      <category>USER_MENU_ACTIONS</category>
+    </action>
+  </extension>
+
+</component>

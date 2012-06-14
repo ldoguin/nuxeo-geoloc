@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.geolocalization.theme.contrib">
+
+<extension target="org.nuxeo.theme.styling.service" point="resources">
+  <resource name="openlayer.js">
+    <path>scripts/openlayers/OpenLayers.js</path>
+  </resource>
+</extension>
+  <extension target="org.nuxeo.theme.styling.service" point="pages">
+    <themePage name="galaxy/default">
+      <resources append="true">
+        <resource>openlayer.js</resource>
+      </resources>
+    </themePage>
+  </extension>
+
+</component>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<fragment version="1">
+
+  <require>org.nuxeo.ecm.platform.lang</require>
+  <require>org.nuxeo.ecm.webapp.core</require>
+
+  <install>
+    <unzip from="${bundle.fileName}" to="/" prefix="web">
+      <include>web/nuxeo.war/**</include>
+    </unzip>
+    
+    <delete path="${bundle.fileName}.tmp"/>
+    <unzip from="${bundle.fileName}" to="${bundle.fileName}.tmp" prefix="OSGI-INF/l10n">
+      <include>OSGI-INF/l10n/*-messages.properties</include>
+    </unzip>
+    <append from="${bundle.fileName}.tmp" pattern="*-messages.properties" to="nuxeo.war/WEB-INF/classes/messages.properties" addNewLine="true"/>
+    <delete path="${bundle.fileName}.tmp"/>
+  </install>
+
+
+
+  <extension target="pages#PAGES">
+    <page view-id="/map.xhtml" >
+      breadcrumb=command.map
+    </page>
+  </extension>
+
+  <extension target="faces-config#NAVIGATION">
+    <!-- Map of geolocalized documents -->
+    <navigation-case>
+      <from-outcome>geo_localization_map</from-outcome>
+      <to-view-id>/map.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </extension>
+
+</fragment>
