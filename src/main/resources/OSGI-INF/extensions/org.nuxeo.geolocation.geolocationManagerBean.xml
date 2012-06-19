@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.geolocation.geoLocationManagerBean">
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="org.nuxeo.geolocation.geolocationManagerBean" link="/incl/tabs/org.nuxeo.geolocation.geolocationManagerBean-tab.xhtml"
+      label="label.org.nuxeo.geolocation.geolocationManagerBean"
+      icon="/icons/org.nuxeo.geolocation.geolocationManagerBean-tab.gif" order="200">
+      <category>VIEW_ACTION_LIST</category>
+    </action>
+  </extension>
+
+</component>
