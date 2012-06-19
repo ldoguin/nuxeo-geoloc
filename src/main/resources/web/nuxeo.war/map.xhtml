@@ -20,10 +20,10 @@
   </ui:define>
 
   <ui:define name="body">
-  <h:form id="geoLocalizationForm">
+  <h:form id="geoLocationForm">
 
-  <a4j:jsFunction name="addMarkers" action="#{geoLocalizationManager.loadAllMarker}"
-   data="#{geoLocalizationManager.allMarker}" oncomplete="loadWorkerCallback(data)"  immediate="true"></a4j:jsFunction>
+  <a4j:jsFunction name="addMarkers" action="#{geoLocationManager.loadAllMarker}"
+   data="#{geoLocationManager.allMarker}" oncomplete="loadWorkerCallback(data)"  immediate="true"></a4j:jsFunction>
    <a4j:status>
       <f:facet name="start">
         <h:graphicImage value="/img/standart_waiter.gif" />

@@ -3,12 +3,12 @@ Bundle-Vendor: Nuxeo
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 5.6-I20120602_0116
-Bundle-Name: nuxeo-localization
+Bundle-Name: nuxeo-location
 Bundle-ManifestVersion: 2
 Nuxeo-Component: OSGI-INF/core-types-contrib.xml,OSGI-INF/theme-contri
  b.xml,OSGI-INF/actions-contrib.xml,OSGI-INF/extensions/org.nuxeo.geol
- ocalization.GeoLocalization.xml,OSGI-INF/extensions/org.nuxeo.geoloca
- lization.geolocalizationManagerBean.xml
-Bundle-SymbolicName: nuxeo-localization
+ ocation.GeoLocation.xml,OSGI-INF/extensions/org.nuxeo.geolocation.geo
+ locationManagerBean.xml
+Bundle-SymbolicName: nuxeo-location
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

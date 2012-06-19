@@ -1,9 +1,0 @@
-<component name="org.nuxeo.geolocalization.GeoLocalization">
-
-   <extension target="org.nuxeo.ecm.core.api.DocumentAdapterService" point="adapters">
-       <adapter facet="GeoLocalization"
-           class="org.nuxeo.geolocalization.GeoLocalization"
-           factory="org.nuxeo.geolocalization.GeoLocalizationFactory"/>
-   </extension>
-    
-</component>

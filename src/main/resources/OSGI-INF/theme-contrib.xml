@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<component name="org.nuxeo.geolocalization.theme.contrib">
+<component name="org.nuxeo.geolocation.theme.contrib">
 
 <extension target="org.nuxeo.theme.styling.service" point="resources">
   <resource name="openlayer.js">
